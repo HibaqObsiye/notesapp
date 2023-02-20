@@ -19,6 +19,6 @@ it('returns multiple notes', () =>{
 it('resets Notes', ()=>{
     model = new NotesModel();
     model.addNote('buy milk')
-    model.reset()
-    expect(model.getNotes).toEqual([])
+    model.resetNotes()
+    expect(model.getNotes()).toEqual([])
 })

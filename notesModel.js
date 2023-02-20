@@ -11,5 +11,9 @@ class NotesModel{
         return this.notes
     }
 
+    resetNotes(){
+        return this.notes = []
+    }
+
 }
 module.exports = NotesModel;
