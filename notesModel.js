@@ -1,12 +1,14 @@
 class NotesModel{
+    constructor(){
+        this.notes = []
+    }
 
-
-    addNote(){
-        return 'buy milk'
+    addNote(note){
+        this.notes.push(note)
     }
 
     getNotes(){
-        return 'buy milk'
+        return this.notes
     }
 
 }
