@@ -15,3 +15,10 @@ it('returns multiple notes', () =>{
 
     expect(model.getNotes()).toEqual(['buy milk', 'buy bread', 'buy tissues'])
 })
+
+it('resets Notes', ()=>{
+    model = new NotesModel();
+    model.addNote('buy milk')
+    model.reset()
+    expect(model.getNotes).toEqual([])
+})
