@@ -4,7 +4,7 @@ class NotesModel{
     }
 
     addNote(note){
-        this.notes = note
+        this.notes.push(note)
     }
 
     getNotes(){
