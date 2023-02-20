@@ -12,7 +12,7 @@ class NotesModel{
     }
 
     resetNotes(){
-        return this.notes = []
+        return this.notes.length = 0
     }
 
 }
