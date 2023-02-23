@@ -6,7 +6,7 @@ const fs = require('fs')
 const NotesView = require('./NotesView')
 const NotesModel = require('./notesModel')
 
-describe('displayNotes', ()=>{
+it('displayNotes', ()=>{
     model = new NotesModel()
     model.addNote('buy milk')
     model.addNote('buy phone')
