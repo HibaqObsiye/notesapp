@@ -35,13 +35,18 @@
           this.button.addEventListener("click", () => {
             this.displayNotes();
           });
+          console.log("Event listener added to button:", this.button);
         }
         displayNotes() {
           let inputValue = document.getElementById("message-input").value;
-          console.log(inputValue);
           this.notepad.addNote(inputValue);
+          let messageDivs = document.querySelectorAll(".message");
+          messageDivs.forEach((messageDiv) => {
+            messageDiv.parentNode.removeChild(messageDiv);
+          });
           this.notepad.getNotes().forEach((element) => {
             let newDiv = document.createElement("div");
+            newDiv.className = "message";
             newDiv.textContent = element;
             document.body.append(newDiv);
           });
@@ -55,8 +60,6 @@
   var notesModel = require_notesModel();
   var NotesView = require_NotesView();
   model = new notesModel();
-  model.addNote("buy milk");
-  model.addNote("buy food");
   View = new NotesView(model);
   View.displayNotes();
   console.log(model.getNotes());

@@ -2,8 +2,7 @@ const notesModel = require('./notesModel')
 const NotesView = require('./NotesView.js')
 
 model = new notesModel()
-model.addNote('buy milk')
-model.addNote('buy food')
+
 View = new NotesView(model)
 View.displayNotes()
 console.log(model.getNotes())
