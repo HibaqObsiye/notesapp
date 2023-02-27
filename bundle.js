@@ -40,6 +40,7 @@
         displayNotes() {
           let inputValue = document.getElementById("message-input").value;
           this.notepad.addNote(inputValue);
+          inputValue = "";
           let messageDivs = document.querySelectorAll(".message");
           messageDivs.forEach((messageDiv) => {
             messageDiv.parentNode.removeChild(messageDiv);
@@ -50,6 +51,7 @@
             newDiv.textContent = element;
             document.body.append(newDiv);
           });
+          document.getElementById("message-input").value = "";
         }
       };
       module.exports = NotesView2;
