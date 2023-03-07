@@ -29,8 +29,9 @@
   var require_NotesView = __commonJS({
     "NotesView.js"(exports, module) {
       var NotesView2 = class {
-        constructor(notes) {
+        constructor(notes, client2) {
           this.notepad = notes;
+          this.noteclient = client2;
           this.button = document.querySelector("#show-message-button");
           this.button.addEventListener("click", () => {
             this.displayNotes();
@@ -53,17 +54,40 @@
           });
           document.getElementById("message-input").value = "";
         }
+        displayNotesFromApi() {
+          this.noteclient.loadNotes((notes) => {
+            this.notepad.resetNotes();
+            notes.forEach((note) => {
+              this.notepad.addNote(note);
+            });
+            this.displayNotes();
+          });
+        }
       };
       module.exports = NotesView2;
+    }
+  });
+
+  // NotesClient.js
+  var require_NotesClient = __commonJS({
+    "NotesClient.js"(exports, module) {
+      var NotesClient2 = class {
+        loadNotes(callback) {
+          fetch("http://localhost:3000/notes").then((response) => response.json()).then((data) => {
+            callback(data);
+          });
+        }
+      };
+      module.exports = NotesClient2;
     }
   });
 
   // index.js
   var notesModel = require_notesModel();
   var NotesView = require_NotesView();
+  var NotesClient = require_NotesClient();
   model = new notesModel();
-  View = new NotesView(model);
-  View.displayNotes();
-  console.log(model.getNotes());
-  console.log("The note app is running");
+  client = new NotesClient();
+  view = new NotesView(model, client);
+  console.log(view.displayNotesFromApi());
 })();

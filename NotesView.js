@@ -1,6 +1,7 @@
 class NotesView{
-    constructor(notes){
+    constructor(notes, client){
         this.notepad = notes
+        this.noteclient = client
         this.button = document.querySelector('#show-message-button')
         this.button.addEventListener('click', () => {
            this.displayNotes();      
@@ -27,5 +28,14 @@ class NotesView{
         document.getElementById("message-input").value = ""
     }
 
+    displayNotesFromApi(){
+        this.noteclient.loadNotes((notes) => {
+          this.notepad.resetNotes();
+          notes.forEach((note) => {
+            this.notepad.addNote(note);
+          });
+          this.displayNotes();
+        });
+      }
 }
 module.exports = NotesView;
